@@ -1,0 +1,31 @@
+{
+    "name": "gumphp/laravel-duckdb",
+    "type": "library",
+    "license": "MIT",
+    "description": "A DuckDB based Eloquent model and Query builder for Laravel",
+    "autoload": {
+        "psr-4": {
+            "GumPHP\\LaravelDuckDB\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chen",
+            "email": "18814515@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.2",
+        "ext-duckdb": "*",
+        "illuminate/database": "^12",
+        "illuminate/support": "^12"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GumPHP\\LaravelDuckDB\\DuckDBServiceProvider"
+            ]
+        }
+    }
+}
