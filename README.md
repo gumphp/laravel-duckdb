@@ -84,13 +84,35 @@ Schema::connection('duckdb')->dropIfExists('users');
 
 在生产环境中，建议将 DuckDB 数据库文件存储在持久化存储中，而不是使用内存数据库。
 
-## 测试
+## 在 webman 中使用
+1. 安装 `webman/database`
+2. 新建 `app/bootstrap/DuckDB.php`
+```php
+<?php
 
-运行测试命令验证驱动是否正常工作：
+namespace app\bootstrap;
 
-```bash
-php artisan duckdb:test
+use GumPHP\LaravelDuckDB\DuckDBConnection;
+use GumPHP\LaravelDuckDB\DuckDBConnector;
+use support\Model;
+use Webman\Bootstrap;
+
+class DuckDB implements Bootstrap
+{
+    public static function start($worker)
+    {
+        $manager = Model::getConnectionResolver();
+        $manager->extend('duckdb', function ($config, $name) {
+            $config['name'] = $name;
+            $connector = new DuckDBConnector();
+            $duckdb = $connector->connect($config);
+            return new DuckDBConnection($duckdb, $config['database'], $config['prefix'], $config);
+        });
+    }
+
+}
 ```
+
 
 ## 许可证
 
