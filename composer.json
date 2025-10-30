@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.2",
         "ext-duckdb": "*",
+        "gumphp/duckdb-ide-helper": "*",
         "illuminate/database": "^12",
         "illuminate/support": "^12"
     },
